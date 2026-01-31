@@ -34,6 +34,13 @@ function App() {
   
   const guesses = isAmplifyConfigured ? amplifyGuesses : (localGuesses || [])
 
+  // Debug logging
+  useEffect(() => {
+    console.log('Amplify configured:', isAmplifyConfigured)
+    console.log('Total guesses:', guesses.length)
+    console.log('Using:', isAmplifyConfigured ? 'Amplify' : 'LocalStorage')
+  }, [guesses.length])
+
   const canSubmit = playerName.trim() !== '' && twin1Guess !== null && twin2Guess !== null
 
   const handleSubmit = async () => {
@@ -142,6 +149,11 @@ function App() {
             <Baby size={40} weight="fill" className="text-primary" />
           </div>
           <p className="text-lg text-muted-foreground font-light">Guess the genders and join the celebration!</p>
+          {!isAmplifyConfigured && (
+            <p className="text-xs text-yellow-600 dark:text-yellow-400 mt-2">
+              ⚠️ Running in development mode - votes are only saved locally
+            </p>
+          )}
         </motion.div>
 
         <Card className="p-6 sm:p-8 shadow-2xl border-2 border-primary/20">
