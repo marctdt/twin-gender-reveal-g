@@ -8,7 +8,7 @@
         "dev:server": "node server/index.js",
         "dev:all": "concurrently \"npm run dev\" \"npm run dev:server\"",
         "kill": "fuser -k 5000/tcp",
-        "build": "vite build",
+        "build": "NODE_OPTIONS='--max-old-space-size=4096' vite build",
         "preview": "vite preview",
         "start": "node server/index.js"
     },
