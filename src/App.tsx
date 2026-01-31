@@ -314,19 +314,6 @@ function App() {
                   </>
                 )}
               </motion.div>
-
-              <Button
-                onClick={() => {
-                  setGameState('input')
-                  setPlayerName('')
-                  setTwin1Guess(null)
-                  setTwin2Guess(null)
-                  setCountdown(5)
-                }}
-                className="w-full h-14 text-lg font-medium bg-primary text-primary-foreground hover:bg-primary/90"
-              >
-                Play Again
-              </Button>
             </motion.div>
           )}
         </Card>
