@@ -1,8 +1,20 @@
 import { useState, useEffect } from 'react'
 import { generateClient } from 'aws-amplify/data'
 import type { Schema } from '../../amplify/data/resource'
+import { isConfigured } from '../amplifyConfig'
 
-const client = generateClient<Schema>()
+// Lazy client initialization - only create if Amplify is configured
+let client: ReturnType<typeof generateClient<Schema>> | null = null
+
+function getClient() {
+  if (!isConfigured) {
+    return null
+  }
+  if (!client) {
+    client = generateClient<Schema>()
+  }
+  return client
+}
 
 export interface LeaderboardGuess {
   id?: string
@@ -19,9 +31,15 @@ export function useAmplifyLeaderboard() {
 
   // Fetch all guesses
   const fetchGuesses = async () => {
+    const amplifyClient = getClient()
+    if (!amplifyClient) {
+      setLoading(false)
+      return
+    }
+
     try {
       setLoading(true)
-      const { data: items } = await client.models.GenderGuess.list()
+      const { data: items } = await amplifyClient.models.GenderGuess.list()
       
       const mapped = (items || []).map(item => ({
         id: item.id,
@@ -43,8 +61,13 @@ export function useAmplifyLeaderboard() {
 
   // Add a new guess
   const addGuess = async (guess: Omit<LeaderboardGuess, 'id'>) => {
+    const amplifyClient = getClient()
+    if (!amplifyClient) {
+      throw new Error('Amplify client not configured')
+    }
+
     try {
-      const { data: newItem } = await client.models.GenderGuess.create({
+      const { data: newItem } = await amplifyClient.models.GenderGuess.create({
         name: guess.name,
         twin1: guess.twin1,
         twin2: guess.twin2,
@@ -71,9 +94,15 @@ export function useAmplifyLeaderboard() {
 
   // Subscribe to real-time updates
   useEffect(() => {
+    const amplifyClient = getClient()
+    if (!amplifyClient) {
+      setLoading(false)
+      return
+    }
+
     fetchGuesses()
 
-    const sub = client.models.GenderGuess.observeQuery().subscribe({
+    const sub = amplifyClient.models.GenderGuess.observeQuery().subscribe({
       next: ({ items }) => {
         const mapped = items.map(item => ({
           id: item.id,
