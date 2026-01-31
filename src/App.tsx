@@ -219,9 +219,22 @@ function App() {
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="py-20 text-center"
+              className="space-y-8"
             >
-              <p className="text-2xl font-medium mb-8">Get ready, {playerName}!</p>
+              <p className="text-2xl font-medium text-center mb-8">Get ready, {playerName}!</p>
+              
+              <div className="grid sm:grid-cols-2 gap-8">
+                <div className="space-y-4">
+                  <h2 className="text-2xl font-medium text-center">Twin A</h2>
+                  <CakeBox gender={null} isCountdown countdownProgress={(5 - countdown) / 5} />
+                </div>
+
+                <div className="space-y-4">
+                  <h2 className="text-2xl font-medium text-center">Twin B</h2>
+                  <CakeBox gender={null} isCountdown countdownProgress={(5 - countdown) / 5} />
+                </div>
+              </div>
+
               <AnimatePresence mode="wait">
                 <motion.div
                   key={countdown}
@@ -229,7 +242,7 @@ function App() {
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 1.5, opacity: 0 }}
                   transition={{ duration: 0.6, ease: 'easeOut' }}
-                  className="text-9xl font-bold text-accent"
+                  className="text-9xl font-bold text-accent text-center"
                 >
                   {countdown}
                 </motion.div>
@@ -320,9 +333,20 @@ function App() {
 interface CakeBoxProps {
   gender: Gender | null
   isRevealed?: boolean
+  isCountdown?: boolean
+  countdownProgress?: number
 }
 
-function CakeBox({ gender, isRevealed = false }: CakeBoxProps) {
+function CakeBox({ gender, isRevealed = false, isCountdown = false, countdownProgress = 0 }: CakeBoxProps) {
+  const lidRotation = isCountdown 
+    ? -30 * countdownProgress 
+    : isRevealed 
+      ? -120 
+      : 0
+
+  const boxOpacity = isRevealed ? 0.3 : 1
+  const boxShake = isCountdown && countdownProgress > 0.2
+
   return (
     <div className="relative w-full aspect-square max-w-xs mx-auto">
       <div className="absolute inset-0 flex items-center justify-center">
@@ -346,13 +370,29 @@ function CakeBox({ gender, isRevealed = false }: CakeBoxProps) {
       <motion.div
         className="absolute inset-0 bg-card border-4 border-border rounded-lg shadow-lg overflow-hidden"
         initial={false}
-        animate={isRevealed ? { opacity: 0.3 } : { opacity: 1 }}
+        animate={
+          boxShake
+            ? {
+                opacity: boxOpacity,
+                x: [0, -2, 2, -2, 2, 0],
+                y: [0, -1, 1, -1, 1, 0],
+              }
+            : { opacity: boxOpacity, x: 0, y: 0 }
+        }
+        transition={
+          boxShake
+            ? { 
+                x: { duration: 0.4, repeat: Infinity },
+                y: { duration: 0.4, repeat: Infinity },
+              }
+            : {}
+        }
       >
         <motion.div
           className="absolute inset-x-0 top-0 h-1/4 bg-accent border-b-4 border-border origin-top"
           initial={false}
-          animate={isRevealed ? { rotateX: -120 } : { rotateX: 0 }}
-          transition={{ duration: 1.2, ease: 'easeOut' }}
+          animate={{ rotateX: lidRotation }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
           style={{ transformStyle: 'preserve-3d' }}
         >
           <div className="w-full h-full flex items-center justify-center text-4xl">
