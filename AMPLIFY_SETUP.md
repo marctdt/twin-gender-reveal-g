@@ -14,22 +14,21 @@ This app supports AWS Amplify Data (DynamoDB) for a global leaderboard that pers
    - Connect your GitHub repository `marctdt/twin-gender-reveal-g`
    - Select the `main` branch
 
-3. **CRITICAL: Enable Amplify Gen 2 Backend**
+3. **CRITICAL: Configure Gen 2 App**
    
-   After connecting your repo, **before deploying**, you MUST enable the backend:
+   During the setup wizard:
    
-   a. In your Amplify app, go to the "Backend" tab
-   b. Click "Create backend" or "Enable backend"
-   c. This will detect your `amplify/` folder and deploy the database
+   a. When asked "Is this an Amplify Gen 2 app?", select **YES**
+   b. Amplify will detect your `amplify/` folder automatically
+   c. This is crucial for enabling the DynamoDB backend
    
-   **Without this step, the app will only use local storage!**
+   **OR if already deployed:**
+   
+   - Go to your Amplify app settings
+   - Under "Build settings" → ensure "Amplify Gen 2" is enabled
+   - The `amplify/` folder should be detected
 
-4. **Configure Build Settings** (optional - should auto-detect)
-   - Amplify will automatically detect the `amplify.yml` file
-   - Build command: `npm run build`
-   - Output directory: `dist`
-
-5. **Deploy**
+4. **Deploy**
    - Click "Save and deploy"
    - Wait for BOTH frontend and backend to deploy (~5-10 minutes)
    - Check the "Backend" tab to ensure the database is created
