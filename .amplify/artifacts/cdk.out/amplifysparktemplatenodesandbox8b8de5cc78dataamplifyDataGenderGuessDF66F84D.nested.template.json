@@ -1,0 +1,1847 @@
+{
+ "Parameters": {
+  "DynamoDBModelTableReadIOPS": {
+   "Type": "Number",
+   "Default": 5,
+   "Description": "The number of read IOPS the table should support."
+  },
+  "DynamoDBModelTableWriteIOPS": {
+   "Type": "Number",
+   "Default": 5,
+   "Description": "The number of write IOPS the table should support."
+  },
+  "DynamoDBBillingMode": {
+   "Type": "String",
+   "Default": "PAY_PER_REQUEST",
+   "AllowedValues": [
+    "PAY_PER_REQUEST",
+    "PROVISIONED"
+   ],
+   "Description": "Configure @model types to create DynamoDB tables with PAY_PER_REQUEST or PROVISIONED billing modes."
+  },
+  "DynamoDBEnablePointInTimeRecovery": {
+   "Type": "String",
+   "Default": "false",
+   "AllowedValues": [
+    "true",
+    "false"
+   ],
+   "Description": "Whether to enable Point in Time Recovery on the table."
+  },
+  "DynamoDBEnableServerSideEncryption": {
+   "Type": "String",
+   "Default": "true",
+   "AllowedValues": [
+    "true",
+    "false"
+   ],
+   "Description": "Enable server side encryption powered by KMS."
+  },
+  "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource201AECC1Outputsamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataAmplifyTableManagerTableManagerCus32419876": {
+   "Type": "String"
+  },
+  "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId": {
+   "Type": "String"
+  },
+  "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name": {
+   "Type": "String"
+  }
+ },
+ "Conditions": {
+  "HasEnvironmentParameter": {
+   "Fn::Not": [
+    {
+     "Fn::Equals": [
+      "NONE",
+      "NONE"
+     ]
+    }
+   ]
+  },
+  "ShouldUsePayPerRequestBilling": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBBillingMode"
+    },
+    "PAY_PER_REQUEST"
+   ]
+  },
+  "ShouldUsePointInTimeRecovery": {
+   "Fn::Equals": [
+    {
+     "Ref": "DynamoDBEnablePointInTimeRecovery"
+    },
+    "true"
+   ]
+  },
+  "CDKMetadataAvailable": {
+   "Fn::Or": [
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "af-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-northeast-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-south-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-3"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ap-southeast-4"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "ca-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "cn-northwest-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-central-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-north-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-south-2"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Or": [
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "eu-west-3"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "il-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-central-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "me-south-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "sa-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-1"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-east-2"
+       ]
+      },
+      {
+       "Fn::Equals": [
+        {
+         "Ref": "AWS::Region"
+        },
+        "us-west-1"
+       ]
+      }
+     ]
+    },
+    {
+     "Fn::Equals": [
+      {
+       "Ref": "AWS::Region"
+      },
+      "us-west-2"
+     ]
+    }
+   ]
+  }
+ },
+ "Resources": {
+  "GenderGuessTable": {
+   "Type": "Custom::AmplifyDynamoDBTable",
+   "Properties": {
+    "ServiceToken": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataAmplifyTableManagerNestedStackAmplifyTableManagerNestedStackResource201AECC1Outputsamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataAmplifyTableManagerTableManagerCus32419876"
+    },
+    "tableName": {
+     "Fn::Join": [
+      "",
+      [
+       "GenderGuess-",
+       {
+        "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+       },
+       "-NONE"
+      ]
+     ]
+    },
+    "attributeDefinitions": [
+     {
+      "attributeName": "id",
+      "attributeType": "S"
+     }
+    ],
+    "keySchema": [
+     {
+      "attributeName": "id",
+      "keyType": "HASH"
+     }
+    ],
+    "provisionedThroughput": {
+     "Fn::If": [
+      "ShouldUsePayPerRequestBilling",
+      {
+       "Ref": "AWS::NoValue"
+      },
+      {
+       "ReadCapacityUnits": {
+        "Ref": "DynamoDBModelTableReadIOPS"
+       },
+       "WriteCapacityUnits": {
+        "Ref": "DynamoDBModelTableWriteIOPS"
+       }
+      }
+     ]
+    },
+    "sseSpecification": {
+     "sseEnabled": false
+    },
+    "streamSpecification": {
+     "streamViewType": "NEW_AND_OLD_IMAGES"
+    },
+    "deletionProtectionEnabled": false,
+    "allowDestructiveGraphqlSchemaUpdates": true,
+    "replaceTableUponGsiUpdate": true,
+    "pointInTimeRecoverySpecification": {
+     "Fn::If": [
+      "ShouldUsePointInTimeRecovery",
+      {
+       "PointInTimeRecoveryEnabled": true
+      },
+      {
+       "Ref": "AWS::NoValue"
+      }
+     ]
+    },
+    "billingMode": {
+     "Fn::If": [
+      "ShouldUsePayPerRequestBilling",
+      "PAY_PER_REQUEST",
+      {
+       "Ref": "AWS::NoValue"
+      }
+     ]
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/GenderGuessTable/Default/Default"
+   }
+  },
+  "GenderGuessIAMRoleE143B095": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "appsync.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Policies": [
+     {
+      "PolicyDocument": {
+       "Statement": [
+        {
+         "Action": [
+          "dynamodb:BatchGetItem",
+          "dynamodb:BatchWriteItem",
+          "dynamodb:PutItem",
+          "dynamodb:DeleteItem",
+          "dynamodb:GetItem",
+          "dynamodb:Scan",
+          "dynamodb:Query",
+          "dynamodb:UpdateItem",
+          "dynamodb:ConditionCheckItem",
+          "dynamodb:DescribeTable",
+          "dynamodb:GetRecords",
+          "dynamodb:GetShardIterator"
+         ],
+         "Effect": "Allow",
+         "Resource": [
+          {
+           "Fn::Sub": [
+            "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}",
+            {
+             "tablename": {
+              "Fn::Join": [
+               "",
+               [
+                "GenderGuess-",
+                {
+                 "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+                },
+                "-NONE"
+               ]
+              ]
+             }
+            }
+           ]
+          },
+          {
+           "Fn::Sub": [
+            "arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/${tablename}/*",
+            {
+             "tablename": {
+              "Fn::Join": [
+               "",
+               [
+                "GenderGuess-",
+                {
+                 "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+                },
+                "-NONE"
+               ]
+              ]
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ],
+       "Version": "2012-10-17"
+      },
+      "PolicyName": "DynamoDBAccess"
+     }
+    ],
+    "RoleName": {
+     "Fn::Join": [
+      "",
+      [
+       "GenderGuessIAMRole5c06eb-",
+       {
+        "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+       },
+       "-NONE"
+      ]
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "amplify:deployment-type",
+      "Value": "sandbox"
+     },
+     {
+      "Key": "amplify:friendly-name",
+      "Value": "amplifyData"
+     },
+     {
+      "Key": "created-by",
+      "Value": "amplify"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/GenderGuessIAMRole/Resource"
+   }
+  },
+  "GenderGuessDataSource": {
+   "Type": "AWS::AppSync::DataSource",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DynamoDBConfig": {
+     "AwsRegion": {
+      "Ref": "AWS::Region"
+     },
+     "TableName": {
+      "Fn::Select": [
+       1,
+       {
+        "Fn::Split": [
+         "/",
+         {
+          "Fn::Select": [
+           5,
+           {
+            "Fn::Split": [
+             ":",
+             {
+              "Fn::GetAtt": [
+               "GenderGuessTable",
+               "TableArn"
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    },
+    "Name": "GenderGuessTable",
+    "ServiceRoleArn": {
+     "Fn::GetAtt": [
+      "GenderGuessIAMRoleE143B095",
+      "Arn"
+     ]
+    },
+    "Type": "AMAZON_DYNAMODB"
+   },
+   "DependsOn": [
+    "GenderGuessIAMRoleE143B095"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/GenderGuessDataSource/Resource"
+   }
+  },
+  "QuerygetGenderGuessauth0FunctionQuerygetGenderGuessauth0FunctionAppSyncFunction9BEBFF16": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetGenderGuessauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/74c1522efb7733193e4d75cee5b96595110452c456623a36d786f743aea94e7c.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/QuerygetGenderGuessauth0Function/QuerygetGenderGuessauth0Function.AppSyncFunction"
+   }
+  },
+  "QuerygetGenderGuesspostAuth0FunctionQuerygetGenderGuesspostAuth0FunctionAppSyncFunction68196378": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerygetGenderGuesspostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/QuerygetGenderGuesspostAuth0Function/QuerygetGenderGuesspostAuth0Function.AppSyncFunction"
+   }
+  },
+  "QueryGetGenderGuessDataResolverFnQueryGetGenderGuessDataResolverFnAppSyncFunctionF1A6AEE9": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "GenderGuessDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryGetGenderGuessDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/08f4d557693d96c1a4efba0f9dc91330e4b19772fd5477c156468843e3d9cb5e.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4c6a2d29f01c6091bd1d9afe16e5849d456c96f17c3b215938c8067399532719.vtl"
+    }
+   },
+   "DependsOn": [
+    "GenderGuessDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/QueryGetGenderGuessDataResolverFn/QueryGetGenderGuessDataResolverFn.AppSyncFunction"
+   }
+  },
+  "GetGenderGuessResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "FieldName": "getGenderGuess",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QuerygetGenderGuessauth0FunctionQuerygetGenderGuessauth0FunctionAppSyncFunction9BEBFF16",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerygetGenderGuesspostAuth0FunctionQuerygetGenderGuesspostAuth0FunctionAppSyncFunction68196378",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QueryGetGenderGuessDataResolverFnQueryGetGenderGuessDataResolverFnAppSyncFunctionF1A6AEE9",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"getGenderGuess\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "GenderGuessTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/queryGetGenderGuessResolver"
+   }
+  },
+  "QuerylistGenderGuessesauth0FunctionQuerylistGenderGuessesauth0FunctionAppSyncFunction509D05F7": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistGenderGuessesauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/74c1522efb7733193e4d75cee5b96595110452c456623a36d786f743aea94e7c.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/QuerylistGenderGuessesauth0Function/QuerylistGenderGuessesauth0Function.AppSyncFunction"
+   }
+  },
+  "QuerylistGenderGuessespostAuth0FunctionQuerylistGenderGuessespostAuth0FunctionAppSyncFunctionD18285FC": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QuerylistGenderGuessespostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/QuerylistGenderGuessespostAuth0Function/QuerylistGenderGuessespostAuth0Function.AppSyncFunction"
+   }
+  },
+  "QueryListGenderGuessesDataResolverFnQueryListGenderGuessesDataResolverFnAppSyncFunction83CBCF6A": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "GenderGuessDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "QueryListGenderGuessesDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/9fcbe070ecd3023c5bf5b966fa9584757db9762eef123bad0820bd87591b2174.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/cc01911d0269d4080ea57505dc445dfc315ef7ad85d3d9d4ea1357858bff451d.vtl"
+    }
+   },
+   "DependsOn": [
+    "GenderGuessDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/QueryListGenderGuessesDataResolverFn/QueryListGenderGuessesDataResolverFn.AppSyncFunction"
+   }
+  },
+  "ListGenderGuessResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "FieldName": "listGenderGuesses",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "QuerylistGenderGuessesauth0FunctionQuerylistGenderGuessesauth0FunctionAppSyncFunction509D05F7",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QuerylistGenderGuessespostAuth0FunctionQuerylistGenderGuessespostAuth0FunctionAppSyncFunctionD18285FC",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "QueryListGenderGuessesDataResolverFnQueryListGenderGuessesDataResolverFnAppSyncFunction83CBCF6A",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Query\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"listGenderGuesses\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "GenderGuessTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Query"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/queryListGenderGuessesResolver"
+   }
+  },
+  "MutationcreateGenderGuessinit0FunctionMutationcreateGenderGuessinit0FunctionAppSyncFunctionF38A2552": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateGenderGuessinit0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/a183ddccbd956316c38ef97177b8f088ef0826f62023323f5ae6053d348ccffc.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/MutationcreateGenderGuessinit0Function/MutationcreateGenderGuessinit0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateGenderGuessauth0FunctionMutationcreateGenderGuessauth0FunctionAppSyncFunction15B9041D": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateGenderGuessauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/eda4511e01e0956a1b97d4ca904a6671ee21a1a583dff170fb18cbbd4f9dd6e6.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/MutationcreateGenderGuessauth0Function/MutationcreateGenderGuessauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationcreateGenderGuesspostAuth0FunctionMutationcreateGenderGuesspostAuth0FunctionAppSyncFunctionA1635895": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationcreateGenderGuesspostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/MutationcreateGenderGuesspostAuth0Function/MutationcreateGenderGuesspostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationCreateGenderGuessDataResolverFnMutationCreateGenderGuessDataResolverFnAppSyncFunction13BAF21E": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "GenderGuessDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationCreateGenderGuessDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/3000bf0c5e33511bbc06876db1241bd77ebca8902108d882d37affc527ed6fd5.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "GenderGuessDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/MutationCreateGenderGuessDataResolverFn/MutationCreateGenderGuessDataResolverFn.AppSyncFunction"
+   }
+  },
+  "CreateGenderGuessResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "FieldName": "createGenderGuess",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationcreateGenderGuessinit0FunctionMutationcreateGenderGuessinit0FunctionAppSyncFunctionF38A2552",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateGenderGuessauth0FunctionMutationcreateGenderGuessauth0FunctionAppSyncFunction15B9041D",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationcreateGenderGuesspostAuth0FunctionMutationcreateGenderGuesspostAuth0FunctionAppSyncFunctionA1635895",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationCreateGenderGuessDataResolverFnMutationCreateGenderGuessDataResolverFnAppSyncFunction13BAF21E",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"createGenderGuess\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "GenderGuessTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/mutationCreateGenderGuessResolver"
+   }
+  },
+  "MutationupdateGenderGuessinit0FunctionMutationupdateGenderGuessinit0FunctionAppSyncFunction8C02923E": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateGenderGuessinit0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/06db846fd14e6fc371f22b12b5545ba8e2dbfeda85d8c8d586c71c282166657b.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/MutationupdateGenderGuessinit0Function/MutationupdateGenderGuessinit0Function.AppSyncFunction"
+   }
+  },
+  "MutationupdateGenderGuessauth0FunctionMutationupdateGenderGuessauth0FunctionAppSyncFunction4E0AAE4C": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "GenderGuessDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateGenderGuessauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1f5fed297da9c32ae3af922bf3a38ccf23b956078887d16891ec06c20c64722c.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/cd0b7103bd7f11aa4b0201590c636ce2c0edbf9e5dd157cb5e0819bc7d7f4738.vtl"
+    }
+   },
+   "DependsOn": [
+    "GenderGuessDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/MutationupdateGenderGuessauth0Function/MutationupdateGenderGuessauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationupdateGenderGuesspostAuth0FunctionMutationupdateGenderGuesspostAuth0FunctionAppSyncFunction5592552C": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationupdateGenderGuesspostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/MutationupdateGenderGuesspostAuth0Function/MutationupdateGenderGuesspostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationUpdateGenderGuessDataResolverFnMutationUpdateGenderGuessDataResolverFnAppSyncFunction95B06E17": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "GenderGuessDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationUpdateGenderGuessDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/474bf0776ec2164a13191d1a0a9e057154931e4918fea5086f49850d02a5371b.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "GenderGuessDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/MutationUpdateGenderGuessDataResolverFn/MutationUpdateGenderGuessDataResolverFn.AppSyncFunction"
+   }
+  },
+  "UpdateGenderGuessResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "FieldName": "updateGenderGuess",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationupdateGenderGuessinit0FunctionMutationupdateGenderGuessinit0FunctionAppSyncFunction8C02923E",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationupdateGenderGuessauth0FunctionMutationupdateGenderGuessauth0FunctionAppSyncFunction4E0AAE4C",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationupdateGenderGuesspostAuth0FunctionMutationupdateGenderGuesspostAuth0FunctionAppSyncFunction5592552C",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationUpdateGenderGuessDataResolverFnMutationUpdateGenderGuessDataResolverFnAppSyncFunction95B06E17",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"updateGenderGuess\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "GenderGuessTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/mutationUpdateGenderGuessResolver"
+   }
+  },
+  "MutationdeleteGenderGuessauth0FunctionMutationdeleteGenderGuessauth0FunctionAppSyncFunctionDE21E383": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "GenderGuessDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteGenderGuessauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/1f5fed297da9c32ae3af922bf3a38ccf23b956078887d16891ec06c20c64722c.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/0064bfbd7fdaea51ef97e8494f036beca0be53bc5c1c7b05c29a27f9cdb28bd2.vtl"
+    }
+   },
+   "DependsOn": [
+    "GenderGuessDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/MutationdeleteGenderGuessauth0Function/MutationdeleteGenderGuessauth0Function.AppSyncFunction"
+   }
+  },
+  "MutationdeleteGenderGuesspostAuth0FunctionMutationdeleteGenderGuesspostAuth0FunctionAppSyncFunction61DCFB59": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationdeleteGenderGuesspostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/MutationdeleteGenderGuesspostAuth0Function/MutationdeleteGenderGuesspostAuth0Function.AppSyncFunction"
+   }
+  },
+  "MutationDeleteGenderGuessDataResolverFnMutationDeleteGenderGuessDataResolverFnAppSyncFunctionEF27C462": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Fn::GetAtt": [
+      "GenderGuessDataSource",
+      "Name"
+     ]
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "MutationDeleteGenderGuessDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/4f7907d1209a2c9953a0c053df402c634e359546d70c7cc5c2e8e21ea734880f.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f4a52b72209a9dfa197b5e7367a5c378c5bb86de6e29ddd9e48b49a3fe54b249.vtl"
+    }
+   },
+   "DependsOn": [
+    "GenderGuessDataSource"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/MutationDeleteGenderGuessDataResolverFn/MutationDeleteGenderGuessDataResolverFn.AppSyncFunction"
+   }
+  },
+  "DeleteGenderGuessResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "FieldName": "deleteGenderGuess",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteGenderGuessauth0FunctionMutationdeleteGenderGuessauth0FunctionAppSyncFunctionDE21E383",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationdeleteGenderGuesspostAuth0FunctionMutationdeleteGenderGuesspostAuth0FunctionAppSyncFunction61DCFB59",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "MutationDeleteGenderGuessDataResolverFnMutationDeleteGenderGuessDataResolverFnAppSyncFunctionEF27C462",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Mutation\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"deleteGenderGuess\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"AMAZON_DYNAMODB\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n$util.qr($ctx.stash.put(\"tableName\", \"",
+       {
+        "Fn::Select": [
+         1,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             5,
+             {
+              "Fn::Split": [
+               ":",
+               {
+                "Fn::GetAtt": [
+                 "GenderGuessTable",
+                 "TableArn"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Mutation"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/mutationDeleteGenderGuessResolver"
+   }
+  },
+  "SubscriptiononCreateGenderGuessauth0FunctionSubscriptiononCreateGenderGuessauth0FunctionAppSyncFunctionDC8F26E4": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononCreateGenderGuessauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/0064bfbd7fdaea51ef97e8494f036beca0be53bc5c1c7b05c29a27f9cdb28bd2.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/SubscriptiononCreateGenderGuessauth0Function/SubscriptiononCreateGenderGuessauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononCreateGenderGuesspostAuth0FunctionSubscriptiononCreateGenderGuesspostAuth0FunctionAppSyncFunction0D8A42F0": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononCreateGenderGuesspostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/SubscriptiononCreateGenderGuesspostAuth0Function/SubscriptiononCreateGenderGuesspostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnCreateGenderGuessDataResolverFnSubscriptionOnCreateGenderGuessDataResolverFnAppSyncFunctionDF80CC9A": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnCreateGenderGuessDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/SubscriptionOnCreateGenderGuessDataResolverFn/SubscriptionOnCreateGenderGuessDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononCreateGenderGuessResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "FieldName": "onCreateGenderGuess",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononCreateGenderGuessauth0FunctionSubscriptiononCreateGenderGuessauth0FunctionAppSyncFunctionDC8F26E4",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononCreateGenderGuesspostAuth0FunctionSubscriptiononCreateGenderGuesspostAuth0FunctionAppSyncFunction0D8A42F0",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnCreateGenderGuessDataResolverFnSubscriptionOnCreateGenderGuessDataResolverFnAppSyncFunctionDF80CC9A",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onCreateGenderGuess\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/subscriptionOnCreateGenderGuessResolver"
+   }
+  },
+  "SubscriptiononUpdateGenderGuessauth0FunctionSubscriptiononUpdateGenderGuessauth0FunctionAppSyncFunction9631AC22": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononUpdateGenderGuessauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/0064bfbd7fdaea51ef97e8494f036beca0be53bc5c1c7b05c29a27f9cdb28bd2.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/SubscriptiononUpdateGenderGuessauth0Function/SubscriptiononUpdateGenderGuessauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononUpdateGenderGuesspostAuth0FunctionSubscriptiononUpdateGenderGuesspostAuth0FunctionAppSyncFunction195AE134": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononUpdateGenderGuesspostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/SubscriptiononUpdateGenderGuesspostAuth0Function/SubscriptiononUpdateGenderGuesspostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnUpdateGenderGuessDataResolverFnSubscriptionOnUpdateGenderGuessDataResolverFnAppSyncFunction22BBBC1C": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnUpdateGenderGuessDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/SubscriptionOnUpdateGenderGuessDataResolverFn/SubscriptionOnUpdateGenderGuessDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononUpdateGenderGuessResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "FieldName": "onUpdateGenderGuess",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononUpdateGenderGuessauth0FunctionSubscriptiononUpdateGenderGuessauth0FunctionAppSyncFunction9631AC22",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononUpdateGenderGuesspostAuth0FunctionSubscriptiononUpdateGenderGuesspostAuth0FunctionAppSyncFunction195AE134",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnUpdateGenderGuessDataResolverFnSubscriptionOnUpdateGenderGuessDataResolverFnAppSyncFunction22BBBC1C",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onUpdateGenderGuess\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/subscriptionOnUpdateGenderGuessResolver"
+   }
+  },
+  "SubscriptiononDeleteGenderGuessauth0FunctionSubscriptiononDeleteGenderGuessauth0FunctionAppSyncFunctionF2253114": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononDeleteGenderGuessauth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/0064bfbd7fdaea51ef97e8494f036beca0be53bc5c1c7b05c29a27f9cdb28bd2.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/SubscriptiononDeleteGenderGuessauth0Function/SubscriptiononDeleteGenderGuessauth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptiononDeleteGenderGuesspostAuth0FunctionSubscriptiononDeleteGenderGuesspostAuth0FunctionAppSyncFunction00F80CE0": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptiononDeleteGenderGuesspostAuth0Function",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c1721bcd774e27c514d3454b5be4f9bdd094c0161b57ddf053d618e3b0086a77.vtl"
+    },
+    "ResponseMappingTemplate": "$util.toJson({})"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/SubscriptiononDeleteGenderGuesspostAuth0Function/SubscriptiononDeleteGenderGuesspostAuth0Function.AppSyncFunction"
+   }
+  },
+  "SubscriptionOnDeleteGenderGuessDataResolverFnSubscriptionOnDeleteGenderGuessDataResolverFnAppSyncFunction87D2E9F1": {
+   "Type": "AWS::AppSync::FunctionConfiguration",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "DataSourceName": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPINONEDSD9323AE5Name"
+    },
+    "FunctionVersion": "2018-05-29",
+    "Name": "SubscriptionOnDeleteGenderGuessDataResolverFn",
+    "RequestMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/fe3c43ada4b9d681a5e2312663ef7a73386424d73b73e51f8e2e9d4b50f7c502.vtl"
+    },
+    "ResponseMappingTemplateS3Location": {
+     "Fn::Sub": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/e0cff47fb007f0bbf2a4e43ca256d6aa7ec109821769fd79fa7c5e83f0e7f9fc.vtl"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/SubscriptionOnDeleteGenderGuessDataResolverFn/SubscriptionOnDeleteGenderGuessDataResolverFn.AppSyncFunction"
+   }
+  },
+  "SubscriptiononDeleteGenderGuessResolver": {
+   "Type": "AWS::AppSync::Resolver",
+   "Properties": {
+    "ApiId": {
+     "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+    },
+    "FieldName": "onDeleteGenderGuess",
+    "Kind": "PIPELINE",
+    "PipelineConfig": {
+     "Functions": [
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononDeleteGenderGuessauth0FunctionSubscriptiononDeleteGenderGuessauth0FunctionAppSyncFunctionF2253114",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptiononDeleteGenderGuesspostAuth0FunctionSubscriptiononDeleteGenderGuesspostAuth0FunctionAppSyncFunction00F80CE0",
+        "FunctionId"
+       ]
+      },
+      {
+       "Fn::GetAtt": [
+        "SubscriptionOnDeleteGenderGuessDataResolverFnSubscriptionOnDeleteGenderGuessDataResolverFnAppSyncFunction87D2E9F1",
+        "FunctionId"
+       ]
+      }
+     ]
+    },
+    "RequestMappingTemplate": {
+     "Fn::Join": [
+      "",
+      [
+       "$util.qr($ctx.stash.put(\"typeName\", \"Subscription\"))\n$util.qr($ctx.stash.put(\"fieldName\", \"onDeleteGenderGuess\"))\n$util.qr($ctx.stash.put(\"conditions\", []))\n$util.qr($ctx.stash.put(\"metadata\", {}))\n$util.qr($ctx.stash.metadata.put(\"dataSourceType\", \"NONE\"))\n$util.qr($ctx.stash.metadata.put(\"apiId\", \"",
+       {
+        "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+       },
+       "\"))\n$util.qr($ctx.stash.put(\"connectionAttributes\", {}))\n\n$util.qr($ctx.stash.put(\"adminRoles\", []))\n$util.toJson({})"
+      ]
+     ]
+    },
+    "ResponseMappingTemplate": "$util.toJson($ctx.prev.result)",
+    "TypeName": "Subscription"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/subscriptionOnDeleteGenderGuessResolver"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WQQWvDMAyFf8vujrclsPuasGM3kt2LYivBjSMHS24pIf99OB0dOz093kP6UKnL6k2/PMGVC2Onwrter0dkQdsJmEnVA31BhBkFYzZ1IOvEBVItckjRoKoTS5j/7ECPGa58Wu2NYA6219/QezwAo3Iw67UN/t4OHjcFy8I3Mnpt9nrTNyDQPVb+dx+JTIaoAw1uTBF2ot/L/oJxU1ydgBmF9XsWxZU+JDOhZIAtdz+TLEnUHncCo6NxUxQs6jM/X8pSv+bPnNm5IiYSN6Nu7/oD1Z1sVDYBAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "amplify-sparktemplate-node-sandbox-8b8de5cc78/data/amplifyData/GenderGuess/CDKMetadata/Default"
+   },
+   "Condition": "CDKMetadataAvailable"
+  }
+ },
+ "Outputs": {
+  "GetAttGenderGuessTableStreamArn": {
+   "Description": "Your DynamoDB table StreamArn.",
+   "Value": {
+    "Fn::GetAtt": [
+     "GenderGuessTable",
+     "TableStreamArn"
+    ]
+   },
+   "Export": {
+    "Name": {
+     "Fn::Join": [
+      ":",
+      [
+       {
+        "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+       },
+       "GetAtt:GenderGuessTable:StreamArn"
+      ]
+     ]
+    }
+   }
+  },
+  "GetAttGenderGuessTableName": {
+   "Description": "Your DynamoDB table name.",
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "GenderGuess-",
+      {
+       "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+      },
+      "-NONE"
+     ]
+    ]
+   },
+   "Export": {
+    "Name": {
+     "Fn::Join": [
+      ":",
+      [
+       {
+        "Ref": "referencetoamplifysparktemplatenodesandbox8b8de5cc78dataamplifyDataGraphQLAPI138CC24CApiId"
+       },
+       "GetAtt:GenderGuessTable:Name"
+      ]
+     ]
+    }
+   }
+  }
+ }
+}

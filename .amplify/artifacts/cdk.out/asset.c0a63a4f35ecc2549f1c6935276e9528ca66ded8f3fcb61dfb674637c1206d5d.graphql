@@ -1,0 +1,243 @@
+type GenderGuess @aws_iam @aws_api_key {
+  name: String!
+  twin1: String!
+  twin2: String!
+  timestamp: Int!
+  id: ID!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+input AmplifyAIConversationTurnErrorInput {
+  errorType: String!
+  message: String!
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelGenderGuessConnection @aws_api_key @aws_iam {
+  items: [GenderGuess]!
+  nextToken: String
+}
+
+input ModelGenderGuessFilterInput {
+  name: ModelStringInput
+  twin1: ModelStringInput
+  twin2: ModelStringInput
+  timestamp: ModelIntInput
+  id: ModelIDInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+  and: [ModelGenderGuessFilterInput]
+  or: [ModelGenderGuessFilterInput]
+  not: ModelGenderGuessFilterInput
+}
+
+type Query {
+  getGenderGuess(id: ID!): GenderGuess @aws_api_key @aws_iam
+  listGenderGuesses(filter: ModelGenderGuessFilterInput, limit: Int, nextToken: String): ModelGenderGuessConnection @aws_api_key @aws_iam
+}
+
+input ModelGenderGuessConditionInput {
+  name: ModelStringInput
+  twin1: ModelStringInput
+  twin2: ModelStringInput
+  timestamp: ModelIntInput
+  and: [ModelGenderGuessConditionInput]
+  or: [ModelGenderGuessConditionInput]
+  not: ModelGenderGuessConditionInput
+  createdAt: ModelStringInput
+  updatedAt: ModelStringInput
+}
+
+input CreateGenderGuessInput {
+  name: String!
+  twin1: String!
+  twin2: String!
+  timestamp: Int!
+  id: ID
+}
+
+input UpdateGenderGuessInput {
+  name: String
+  twin1: String
+  twin2: String
+  timestamp: Int
+  id: ID!
+}
+
+input DeleteGenderGuessInput {
+  id: ID!
+}
+
+type Mutation {
+  createGenderGuess(input: CreateGenderGuessInput!, condition: ModelGenderGuessConditionInput): GenderGuess @aws_api_key @aws_iam
+  updateGenderGuess(input: UpdateGenderGuessInput!, condition: ModelGenderGuessConditionInput): GenderGuess @aws_api_key @aws_iam
+  deleteGenderGuess(input: DeleteGenderGuessInput!, condition: ModelGenderGuessConditionInput): GenderGuess @aws_api_key @aws_iam
+}
+
+input ModelSubscriptionGenderGuessFilterInput {
+  name: ModelSubscriptionStringInput
+  twin1: ModelSubscriptionStringInput
+  twin2: ModelSubscriptionStringInput
+  timestamp: ModelSubscriptionIntInput
+  id: ModelSubscriptionIDInput
+  createdAt: ModelSubscriptionStringInput
+  updatedAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionGenderGuessFilterInput]
+  or: [ModelSubscriptionGenderGuessFilterInput]
+}
+
+type Subscription {
+  onCreateGenderGuess(filter: ModelSubscriptionGenderGuessFilterInput): GenderGuess @aws_subscribe(mutations: ["createGenderGuess"]) @aws_api_key @aws_iam
+  onUpdateGenderGuess(filter: ModelSubscriptionGenderGuessFilterInput): GenderGuess @aws_subscribe(mutations: ["updateGenderGuess"]) @aws_api_key @aws_iam
+  onDeleteGenderGuess(filter: ModelSubscriptionGenderGuessFilterInput): GenderGuess @aws_subscribe(mutations: ["deleteGenderGuess"]) @aws_api_key @aws_iam
+}
