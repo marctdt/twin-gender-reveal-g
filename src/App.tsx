@@ -3,7 +3,7 @@ import { useKV } from '@github/spark/hooks'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card } from '@/components/ui/card'
-import { Baby, Heart, Sparkle, GenderMale, GenderFemale, Trophy, Crown } from '@phosphor-icons/react'
+import { Baby, Heart, Sparkle, Trophy, Crown } from '@phosphor-icons/react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { toast } from 'sonner'
 import confetti from 'canvas-confetti'
@@ -163,8 +163,7 @@ function App() {
                           : 'bg-secondary hover:bg-secondary/80'
                       }`}
                     >
-                      <GenderMale size={20} weight="bold" className="sm:mr-2" />
-                      <span className="hidden sm:inline">Boy</span>
+                      Boy
                     </Button>
                     <Button
                       onClick={() => setTwin1Guess('girl')}
@@ -174,8 +173,7 @@ function App() {
                           : 'bg-secondary hover:bg-secondary/80'
                       }`}
                     >
-                      <GenderFemale size={20} weight="bold" className="sm:mr-2" />
-                      <span className="hidden sm:inline">Girl</span>
+                      Girl
                     </Button>
                   </div>
                 </div>
@@ -192,8 +190,7 @@ function App() {
                           : 'bg-secondary hover:bg-secondary/80'
                       }`}
                     >
-                      <GenderMale size={20} weight="bold" className="sm:mr-2" />
-                      <span className="hidden sm:inline">Boy</span>
+                      Boy
                     </Button>
                     <Button
                       onClick={() => setTwin2Guess('girl')}
@@ -203,8 +200,7 @@ function App() {
                           : 'bg-secondary hover:bg-secondary/80'
                       }`}
                     >
-                      <GenderFemale size={20} weight="bold" className="sm:mr-2" />
-                      <span className="hidden sm:inline">Girl</span>
+                      Girl
                     </Button>
                   </div>
                 </div>
