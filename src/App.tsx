@@ -3,7 +3,7 @@ import { useKV } from '@github/spark/hooks'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card } from '@/components/ui/card'
-import { Baby, Heart, Sparkle, GenderMale, GenderFemale } from '@phosphor-icons/react'
+import { Baby, Heart, Sparkle, GenderMale, GenderFemale, Trophy, Crown } from '@phosphor-icons/react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { toast } from 'sonner'
 import confetti from 'canvas-confetti'
@@ -108,13 +108,18 @@ function App() {
     }
   }, [gameState, isCorrect])
 
+  const sortedGuesses = [...(guesses || [])].sort((a, b) => b.timestamp - a.timestamp)
+  const correctGuesses = sortedGuesses.filter(
+    g => g.twin1 === ACTUAL_GENDERS.twin1 && g.twin2 === ACTUAL_GENDERS.twin2
+  )
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary/20 via-background to-secondary/30 flex items-center justify-center p-4">
-      <div className="w-full max-w-4xl">
+    <div className="min-h-screen bg-gradient-to-br from-primary/20 via-background to-secondary/30 flex items-center justify-center p-4 py-12">
+      <div className="w-full max-w-4xl space-y-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-8"
+          className="text-center"
         >
           <div className="flex items-center justify-center gap-2 mb-2">
             <Baby size={40} weight="fill" className="text-primary" />
@@ -325,6 +330,109 @@ function App() {
             </motion.div>
           )}
         </Card>
+
+        {sortedGuesses.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <Card className="p-6 sm:p-8 shadow-xl border-2 border-accent/20">
+              <div className="flex items-center justify-center gap-2 mb-6">
+                <Trophy size={32} weight="fill" className="text-accent" />
+                <h2 className="text-3xl font-semibold text-center">Leaderboard</h2>
+              </div>
+
+              {correctGuesses.length > 0 && (
+                <div className="mb-8">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Crown size={24} weight="fill" className="text-accent" />
+                    <h3 className="text-xl font-medium">Correct Guesses 🎉</h3>
+                  </div>
+                  <div className="space-y-3">
+                    {correctGuesses.map((guess, index) => (
+                      <motion.div
+                        key={guess.timestamp}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        className="bg-accent/10 border-2 border-accent rounded-lg p-4 flex items-center justify-between"
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="bg-accent text-accent-foreground rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg">
+                            {index + 1}
+                          </div>
+                          <div>
+                            <p className="font-semibold text-lg">{guess.name}</p>
+                            <p className="text-sm text-muted-foreground">
+                              {new Date(guess.timestamp).toLocaleString()}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex gap-2">
+                          <div className={`px-3 py-1 rounded-full text-sm font-medium ${
+                            guess.twin1 === 'girl' ? 'bg-girl/20 text-girl-foreground' : 'bg-boy/20 text-boy-foreground'
+                          }`}>
+                            {guess.twin1 === 'girl' ? '👧' : '👦'} A
+                          </div>
+                          <div className={`px-3 py-1 rounded-full text-sm font-medium ${
+                            guess.twin2 === 'girl' ? 'bg-girl/20 text-girl-foreground' : 'bg-boy/20 text-boy-foreground'
+                          }`}>
+                            {guess.twin2 === 'girl' ? '👧' : '👦'} B
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div>
+                <h3 className="text-xl font-medium mb-4">All Guesses</h3>
+                <div className="space-y-3 max-h-96 overflow-y-auto">
+                  {sortedGuesses.map((guess, index) => {
+                    const isCorrect = guess.twin1 === ACTUAL_GENDERS.twin1 && guess.twin2 === ACTUAL_GENDERS.twin2
+                    return (
+                      <motion.div
+                        key={guess.timestamp}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                        className={`rounded-lg p-4 flex items-center justify-between ${
+                          isCorrect ? 'bg-accent/5 border border-accent/30' : 'bg-card border border-border'
+                        }`}
+                      >
+                        <div className="flex items-center gap-3">
+                          {isCorrect && (
+                            <Sparkle size={20} weight="fill" className="text-accent" />
+                          )}
+                          <div>
+                            <p className="font-medium">{guess.name}</p>
+                            <p className="text-xs text-muted-foreground">
+                              {new Date(guess.timestamp).toLocaleString()}
+                            </p>
+                          </div>
+                        </div>
+                        <div className="flex gap-2">
+                          <div className={`px-3 py-1 rounded-full text-sm font-medium ${
+                            guess.twin1 === 'girl' ? 'bg-girl/20 text-girl-foreground' : 'bg-boy/20 text-boy-foreground'
+                          }`}>
+                            {guess.twin1 === 'girl' ? '👧' : '👦'} A
+                          </div>
+                          <div className={`px-3 py-1 rounded-full text-sm font-medium ${
+                            guess.twin2 === 'girl' ? 'bg-girl/20 text-girl-foreground' : 'bg-boy/20 text-boy-foreground'
+                          }`}>
+                            {guess.twin2 === 'girl' ? '👧' : '👦'} B
+                          </div>
+                        </div>
+                      </motion.div>
+                    )
+                  })}
+                </div>
+              </div>
+            </Card>
+          </motion.div>
+        )}
       </div>
     </div>
   )
