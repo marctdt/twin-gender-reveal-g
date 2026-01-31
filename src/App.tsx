@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useKV } from '@github/spark/hooks'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/card'
 import { Baby, Heart, Sparkle, GenderMale, GenderFemale } from '@phosphor-icons/react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { toast } from 'sonner'
+import confetti from 'canvas-confetti'
 
 type Gender = 'boy' | 'girl'
 
@@ -61,6 +62,51 @@ function App() {
   }
 
   const isCorrect = twin1Guess === ACTUAL_GENDERS.twin1 && twin2Guess === ACTUAL_GENDERS.twin2
+
+  useEffect(() => {
+    if (gameState === 'reveal' && isCorrect) {
+      const duration = 3000
+      const animationEnd = Date.now() + duration
+
+      const randomInRange = (min: number, max: number) => {
+        return Math.random() * (max - min) + min
+      }
+
+      const interval = setInterval(() => {
+        const timeLeft = animationEnd - Date.now()
+
+        if (timeLeft <= 0) {
+          clearInterval(interval)
+          return
+        }
+
+        const particleCount = 50
+
+        confetti({
+          particleCount,
+          startVelocity: 30,
+          spread: 360,
+          origin: {
+            x: randomInRange(0.1, 0.3),
+            y: Math.random() - 0.2
+          },
+          colors: ['#E91E63', '#2196F3', '#FFD700', '#FF69B4', '#87CEEB']
+        })
+        confetti({
+          particleCount,
+          startVelocity: 30,
+          spread: 360,
+          origin: {
+            x: randomInRange(0.7, 0.9),
+            y: Math.random() - 0.2
+          },
+          colors: ['#E91E63', '#2196F3', '#FFD700', '#FF69B4', '#87CEEB']
+        })
+      }, 250)
+
+      return () => clearInterval(interval)
+    }
+  }, [gameState, isCorrect])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primary/20 via-background to-secondary/30 flex items-center justify-center p-4">
