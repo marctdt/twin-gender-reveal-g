@@ -123,7 +123,7 @@ function App() {
         >
           <div className="flex items-center justify-center gap-2 mb-2">
             <Baby size={40} weight="fill" className="text-primary" />
-            <h1 className="text-4xl sm:text-5xl font-semibold text-foreground">Twin Gender Reveal</h1>
+            <h1 className="text-4xl sm:text-5xl font-semibold text-foreground">Marc & Fay, Double happiness reveal</h1>
             <Baby size={40} weight="fill" className="text-primary" />
           </div>
           <p className="text-lg text-muted-foreground font-light">Guess the genders and join the celebration!</p>
