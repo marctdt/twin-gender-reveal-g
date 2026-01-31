@@ -22,6 +22,22 @@ export default defineConfig({
       '@': resolve(projectRoot, 'src')
     }
   },
+  build: {
+    sourcemap: false,
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'phosphor-icons': ['@phosphor-icons/react'],
+          'vendor': ['react', 'react-dom', 'framer-motion']
+        }
+      }
+    }
+  },
+  optimizeDeps: {
+    include: ['@phosphor-icons/react'],
+    exclude: []
+  },
   server: {
     proxy: {
       '/api': {
