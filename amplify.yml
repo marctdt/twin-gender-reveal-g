@@ -7,23 +7,10 @@ frontend:
     build:
       commands:
         - npm run build
-        - mkdir -p server/data
-        - echo '[]' > server/data/leaderboard.json
   artifacts:
-    baseDirectory: /
+    baseDirectory: dist
     files:
-      - 'dist/**/*'
-      - 'server/**/*'
-      - 'package.json'
-      - 'package-lock.json'
+      - '**/*'
   cache:
     paths:
       - node_modules/**/*
-backend:
-  phases:
-    build:
-      commands:
-        - npm install express cors
-    deploy:
-      commands:
-        - NODE_ENV=production node server/index.js

@@ -8,7 +8,8 @@ export interface LeaderboardGuess {
   timestamp: number
 }
 
-const API_URL = '/api/guesses'
+// Use environment variable in production, local proxy in development
+const API_URL = import.meta.env.VITE_API_URL || '/api/guesses'
 
 export function useFileLeaderboard() {
   const [guesses, setGuesses] = useState<LeaderboardGuess[]>([])
