@@ -150,61 +150,61 @@ function App() {
                 />
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-8">
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-medium text-center">Twin A</h2>
+              <div className="grid grid-cols-2 gap-4 sm:gap-8">
+                <div className="space-y-2 sm:space-y-4">
+                  <h2 className="text-lg sm:text-2xl font-medium text-center">Twin A</h2>
                   <CakeBox gender={null} />
-                  <div className="flex gap-3">
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                     <Button
                       onClick={() => setTwin1Guess('boy')}
-                      className={`flex-1 h-14 text-lg font-medium transition-all ${
+                      className={`flex-1 h-12 sm:h-14 text-sm sm:text-lg font-medium transition-all ${
                         twin1Guess === 'boy'
                           ? 'bg-boy text-boy-foreground hover:bg-boy/90 scale-105'
                           : 'bg-secondary hover:bg-secondary/80'
                       }`}
                     >
-                      <GenderMale size={24} weight="bold" className="mr-2" />
-                      Boy
+                      <GenderMale size={20} weight="bold" className="sm:mr-2" />
+                      <span className="hidden sm:inline">Boy</span>
                     </Button>
                     <Button
                       onClick={() => setTwin1Guess('girl')}
-                      className={`flex-1 h-14 text-lg font-medium transition-all ${
+                      className={`flex-1 h-12 sm:h-14 text-sm sm:text-lg font-medium transition-all ${
                         twin1Guess === 'girl'
                           ? 'bg-girl text-girl-foreground hover:bg-girl/90 scale-105'
                           : 'bg-secondary hover:bg-secondary/80'
                       }`}
                     >
-                      <GenderFemale size={24} weight="bold" className="mr-2" />
-                      Girl
+                      <GenderFemale size={20} weight="bold" className="sm:mr-2" />
+                      <span className="hidden sm:inline">Girl</span>
                     </Button>
                   </div>
                 </div>
 
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-medium text-center">Twin B</h2>
+                <div className="space-y-2 sm:space-y-4">
+                  <h2 className="text-lg sm:text-2xl font-medium text-center">Twin B</h2>
                   <CakeBox gender={null} />
-                  <div className="flex gap-3">
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
                     <Button
                       onClick={() => setTwin2Guess('boy')}
-                      className={`flex-1 h-14 text-lg font-medium transition-all ${
+                      className={`flex-1 h-12 sm:h-14 text-sm sm:text-lg font-medium transition-all ${
                         twin2Guess === 'boy'
                           ? 'bg-boy text-boy-foreground hover:bg-boy/90 scale-105'
                           : 'bg-secondary hover:bg-secondary/80'
                       }`}
                     >
-                      <GenderMale size={24} weight="bold" className="mr-2" />
-                      Boy
+                      <GenderMale size={20} weight="bold" className="sm:mr-2" />
+                      <span className="hidden sm:inline">Boy</span>
                     </Button>
                     <Button
                       onClick={() => setTwin2Guess('girl')}
-                      className={`flex-1 h-14 text-lg font-medium transition-all ${
+                      className={`flex-1 h-12 sm:h-14 text-sm sm:text-lg font-medium transition-all ${
                         twin2Guess === 'girl'
                           ? 'bg-girl text-girl-foreground hover:bg-girl/90 scale-105'
                           : 'bg-secondary hover:bg-secondary/80'
                       }`}
                     >
-                      <GenderFemale size={24} weight="bold" className="mr-2" />
-                      Girl
+                      <GenderFemale size={20} weight="bold" className="sm:mr-2" />
+                      <span className="hidden sm:inline">Girl</span>
                     </Button>
                   </div>
                 </div>
@@ -228,14 +228,14 @@ function App() {
             >
               <p className="text-2xl font-medium text-center mb-8">Get ready, {playerName}!</p>
               
-              <div className="grid sm:grid-cols-2 gap-8">
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-medium text-center">Twin A</h2>
+              <div className="grid grid-cols-2 gap-4 sm:gap-8">
+                <div className="space-y-2 sm:space-y-4">
+                  <h2 className="text-lg sm:text-2xl font-medium text-center">Twin A</h2>
                   <CakeBox gender={null} isCountdown countdownProgress={(5 - countdown) / 5} />
                 </div>
 
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-medium text-center">Twin B</h2>
+                <div className="space-y-2 sm:space-y-4">
+                  <h2 className="text-lg sm:text-2xl font-medium text-center">Twin B</h2>
                   <CakeBox gender={null} isCountdown countdownProgress={(5 - countdown) / 5} />
                 </div>
               </div>
@@ -261,19 +261,19 @@ function App() {
               animate={{ opacity: 1 }}
               className="space-y-8"
             >
-              <div className="grid sm:grid-cols-2 gap-8">
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-medium text-center">Twin A</h2>
+              <div className="grid grid-cols-2 gap-4 sm:gap-8">
+                <div className="space-y-2 sm:space-y-4">
+                  <h2 className="text-lg sm:text-2xl font-medium text-center">Twin A</h2>
                   <CakeBox gender={ACTUAL_GENDERS.twin1} isRevealed />
-                  <p className="text-center text-lg font-medium">
+                  <p className="text-center text-sm sm:text-lg font-medium">
                     It's a {ACTUAL_GENDERS.twin1 === 'girl' ? '💕 Girl! 💕' : '💙 Boy! 💙'}
                   </p>
                 </div>
 
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-medium text-center">Twin B</h2>
+                <div className="space-y-2 sm:space-y-4">
+                  <h2 className="text-lg sm:text-2xl font-medium text-center">Twin B</h2>
                   <CakeBox gender={ACTUAL_GENDERS.twin2} isRevealed />
-                  <p className="text-center text-lg font-medium">
+                  <p className="text-center text-sm sm:text-lg font-medium">
                     It's a {ACTUAL_GENDERS.twin2 === 'girl' ? '💕 Girl! 💕' : '💙 Boy! 💙'}
                   </p>
                 </div>
@@ -291,7 +291,7 @@ function App() {
                   <>
                     <div className="flex items-center justify-center gap-2 mb-3">
                       <Sparkle size={32} weight="fill" className="text-accent" />
-                      <h3 className="text-3xl font-semibold">Congratulations, {playerName}!</h3>
+                      <h3 className="text-2xl sm:text-3xl font-semibold">Congratulations, {playerName}!</h3>
                       <Sparkle size={32} weight="fill" className="text-accent" />
                     </div>
                     <p className="text-xl mb-2">You guessed both genders correctly! 🎊</p>
@@ -304,7 +304,7 @@ function App() {
                   </>
                 ) : (
                   <>
-                    <h3 className="text-3xl font-semibold mb-3">Hope you had fun, {playerName}! 🎉</h3>
+                    <h3 className="text-2xl sm:text-3xl font-semibold mb-3">Hope you had fun, {playerName}! 🎉</h3>
                     <p className="text-xl mb-2">Better luck next time with the guessing!</p>
                     <div className="flex items-center justify-center gap-2 mt-4">
                       <Heart size={24} weight="fill" className="text-primary" />
@@ -443,7 +443,7 @@ function CakeBox({ gender, isRevealed = false, isCountdown = false, countdownPro
   const boxShake = isCountdown && countdownProgress > 0.2
 
   return (
-    <div className="relative w-full aspect-square max-w-xs mx-auto">
+    <div className="relative w-full aspect-square mx-auto">
       <div className="absolute inset-0 flex items-center justify-center">
         <AnimatePresence>
           {isRevealed && gender && (
@@ -451,7 +451,7 @@ function CakeBox({ gender, isRevealed = false, isCountdown = false, countdownPro
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.6, duration: 0.5, ease: 'backOut' }}
-              className={`text-9xl ${gender === 'boy' ? 'grayscale-0' : ''}`}
+              className="text-5xl sm:text-9xl"
               style={{
                 filter: gender === 'boy' ? 'hue-rotate(200deg) saturate(1.5)' : 'hue-rotate(330deg) saturate(1.3)'
               }}
@@ -463,7 +463,7 @@ function CakeBox({ gender, isRevealed = false, isCountdown = false, countdownPro
       </div>
 
       <motion.div
-        className="absolute inset-0 bg-card border-4 border-border rounded-lg shadow-lg overflow-hidden"
+        className="absolute inset-0 bg-card border-2 sm:border-4 border-border rounded-lg shadow-lg overflow-hidden"
         initial={false}
         animate={
           boxShake
@@ -484,18 +484,18 @@ function CakeBox({ gender, isRevealed = false, isCountdown = false, countdownPro
         }
       >
         <motion.div
-          className="absolute inset-x-0 top-0 h-1/4 bg-accent border-b-4 border-border origin-top"
+          className="absolute inset-x-0 top-0 h-1/4 bg-accent border-b-2 sm:border-b-4 border-border origin-top"
           initial={false}
           animate={{ rotateX: lidRotation }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
           style={{ transformStyle: 'preserve-3d' }}
         >
-          <div className="w-full h-full flex items-center justify-center text-4xl">
+          <div className="w-full h-full flex items-center justify-center text-xl sm:text-4xl">
             🎀
           </div>
         </motion.div>
 
-        <div className="absolute inset-0 flex items-center justify-center text-6xl opacity-30">
+        <div className="absolute inset-0 flex items-center justify-center text-3xl sm:text-6xl opacity-30">
           🎁
         </div>
       </motion.div>
