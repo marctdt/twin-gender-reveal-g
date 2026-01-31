@@ -17,7 +17,7 @@ interface Guess {
 
 const ACTUAL_GENDERS: Guess = {
   twin1: 'girl',
-  twin2: 'boy'
+  twin2: 'girl'
 }
 
 function App() {
