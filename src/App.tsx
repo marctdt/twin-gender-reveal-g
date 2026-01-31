@@ -318,7 +318,7 @@ function App() {
           )}
         </Card>
 
-        {sortedGuesses.length > 0 && (
+        {sortedGuesses.length > 0 && gameState === 'reveal' && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
