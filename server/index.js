@@ -15,9 +15,6 @@ const DIST_DIR = path.join(__dirname, '..', 'dist');
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from dist folder
-app.use(express.static(DIST_DIR));
-
 // Ensure data directory exists
 async function ensureDataDir() {
   const dataDir = path.dirname(DATA_FILE);
@@ -82,6 +79,9 @@ app.post('/api/guesses', async (req, res) => {
     res.status(500).json({ error: 'Failed to add guess' });
   }
 });
+
+// Serve static files from dist folder (after API routes)
+app.use(express.static(DIST_DIR));
 
 // Serve index.html for all other routes (SPA support)
 app.get('*', (req, res) => {
