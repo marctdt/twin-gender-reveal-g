@@ -353,15 +353,15 @@ function App() {
                           </div>
                         </div>
                         <div className="flex gap-2">
-                          <div className={`px-3 py-1 rounded-full text-sm font-medium ${
-                            guess.twin1 === 'girl' ? 'bg-girl/20 text-girl-foreground' : 'bg-boy/20 text-boy-foreground'
+                          <div className={`px-3 py-1 rounded-full text-2xl ${
+                            guess.twin1 === 'girl' ? 'bg-girl/20' : 'bg-boy/20'
                           }`}>
-                            {guess.twin1 === 'girl' ? '👧' : '👦'} A
+                            {guess.twin1 === 'girl' ? '👧' : '👦'}
                           </div>
-                          <div className={`px-3 py-1 rounded-full text-sm font-medium ${
-                            guess.twin2 === 'girl' ? 'bg-girl/20 text-girl-foreground' : 'bg-boy/20 text-boy-foreground'
+                          <div className={`px-3 py-1 rounded-full text-2xl ${
+                            guess.twin2 === 'girl' ? 'bg-girl/20' : 'bg-boy/20'
                           }`}>
-                            {guess.twin2 === 'girl' ? '👧' : '👦'} B
+                            {guess.twin2 === 'girl' ? '👧' : '👦'}
                           </div>
                         </div>
                       </motion.div>
@@ -397,15 +397,15 @@ function App() {
                           </div>
                         </div>
                         <div className="flex gap-2">
-                          <div className={`px-3 py-1 rounded-full text-sm font-medium ${
-                            guess.twin1 === 'girl' ? 'bg-girl/20 text-girl-foreground' : 'bg-boy/20 text-boy-foreground'
+                          <div className={`px-3 py-1 rounded-full text-2xl ${
+                            guess.twin1 === 'girl' ? 'bg-girl/20' : 'bg-boy/20'
                           }`}>
-                            {guess.twin1 === 'girl' ? '👧' : '👦'} A
+                            {guess.twin1 === 'girl' ? '👧' : '👦'}
                           </div>
-                          <div className={`px-3 py-1 rounded-full text-sm font-medium ${
-                            guess.twin2 === 'girl' ? 'bg-girl/20 text-girl-foreground' : 'bg-boy/20 text-boy-foreground'
+                          <div className={`px-3 py-1 rounded-full text-2xl ${
+                            guess.twin2 === 'girl' ? 'bg-girl/20' : 'bg-boy/20'
                           }`}>
-                            {guess.twin2 === 'girl' ? '👧' : '👦'} B
+                            {guess.twin2 === 'girl' ? '👧' : '👦'}
                           </div>
                         </div>
                       </motion.div>
