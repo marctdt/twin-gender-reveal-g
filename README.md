@@ -1,9 +1,32 @@
-# ✨ Welcome to Your Spark Template!
-You've just launched your brand-new Spark Template Codespace — everything’s fired up and ready for you to explore, build, and create with Spark!
+# ✨ Twin Gender Reveal App
 
-This template is your blank canvas. It comes with a minimal setup to help you get started quickly with Spark development.
+A fun, interactive twin gender reveal game with a **global leaderboard**!
 
-🚀 What's Inside?
+## 🚀 Quick Start
+
+This app uses a simple flat file backend (no AWS required!)
+
+### Run the App Locally
+
+```bash
+npm install
+npm run dev:all
+```
+
+Then open [http://localhost:5001](http://localhost:5001)
+
+This runs:
+- **Frontend** (Vite) on port 5001
+- **Backend** (Express API) on port 3001
+
+## 📁 How It Works
+
+- **Storage**: Simple JSON file at `server/data/leaderboard.json`
+- **Backend**: Express server at `server/index.js`
+- **Frontend**: React app that calls `/api/guesses`
+- **Real-time**: Polls for updates every 5 seconds
+
+## 📦 What's Inside?
 - A clean, minimal Spark environment
 - Pre-configured for local development
 - Ready to scale with your ideas

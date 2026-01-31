@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useKV } from '@github/spark/hooks'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card } from '@/components/ui/card'
@@ -7,6 +6,7 @@ import { Baby, Heart, Sparkle, Trophy, Crown } from '@phosphor-icons/react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { toast } from 'sonner'
 import confetti from 'canvas-confetti'
+import { useFileLeaderboard } from '@/hooks/useFileLeaderboard'
 
 type Gender = 'boy' | 'girl'
 
@@ -26,39 +26,37 @@ function App() {
   const [twin2Guess, setTwin2Guess] = useState<Gender | null>(null)
   const [gameState, setGameState] = useState<'input' | 'countdown' | 'reveal'>('input')
   const [countdown, setCountdown] = useState(5)
-  const [guesses, setGuesses] = useKV<Array<{ name: string; twin1: Gender; twin2: Gender; timestamp: number }>>('gender-guesses', [])
+  const { guesses, addGuess, loading } = useFileLeaderboard()
 
   const canSubmit = playerName.trim() !== '' && twin1Guess !== null && twin2Guess !== null
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!canSubmit || !twin1Guess || !twin2Guess) return
 
-    setGuesses((current) => {
-      const currentArray = current || []
-      return [
-        ...currentArray,
-        {
-          name: playerName,
-          twin1: twin1Guess,
-          twin2: twin2Guess,
-          timestamp: Date.now()
-        }
-      ]
-    })
-
-    setGameState('countdown')
-    setCountdown(5)
-
-    const countdownInterval = setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          clearInterval(countdownInterval)
-          setTimeout(() => setGameState('reveal'), 100)
-          return 0
-        }
-        return prev - 1
+    try {
+      await addGuess({
+        name: playerName,
+        twin1: twin1Guess,
+        twin2: twin2Guess,
+        timestamp: Date.now()
       })
-    }, 1000)
+
+      setGameState('countdown')
+      setCountdown(5)
+
+      const countdownInterval = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev <= 1) {
+            clearInterval(countdownInterval)
+            setTimeout(() => setGameState('reveal'), 100)
+            return 0
+          }
+          return prev - 1
+        })
+      }, 1000)
+    } catch (error) {
+      toast.error('Failed to submit guess. Please try again.')
+    }
   }
 
   const isCorrect = twin1Guess === ACTUAL_GENDERS.twin1 && twin2Guess === ACTUAL_GENDERS.twin2
