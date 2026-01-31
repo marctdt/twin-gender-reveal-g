@@ -8,11 +8,11 @@
         "dev:server": "node server/index.js",
         "dev:all": "concurrently \"npm run dev\" \"npm run dev:server\"",
         "kill": "fuser -k 5000/tcp",
-        "build": "tsc -b --noCheck && vite build",
+        "build": "vite build",
         "lint": "eslint .",
         "optimize": "vite optimize",
         "preview": "vite preview",
-        "start": "NODE_ENV=production PORT=3000 node server/index.js",
+        "start": "node server/index.js",
         "sandbox": "npx ampx sandbox",
         "deploy": "npx ampx deploy"
     },

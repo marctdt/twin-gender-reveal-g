@@ -15,10 +15,8 @@ const DIST_DIR = path.join(__dirname, '..', 'dist');
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from dist folder in production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(DIST_DIR));
-}
+// Serve static files from dist folder
+app.use(express.static(DIST_DIR));
 
 // Ensure data directory exists
 async function ensureDataDir() {
@@ -86,11 +84,9 @@ app.post('/api/guesses', async (req, res) => {
 });
 
 // Serve index.html for all other routes (SPA support)
-if (process.env.NODE_ENV === 'production') {
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(DIST_DIR, 'index.html'));
-  });
-}
+app.get('*', (req, res) => {
+  res.sendFile(path.join(DIST_DIR, 'index.html'));
+});
 
 // Initialize and start server
 async function start() {
