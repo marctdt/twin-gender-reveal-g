@@ -19,7 +19,7 @@ npm run dev:all
 
 This runs:
 - Frontend (Vite) on `http://localhost:5001`
-- Backend (Express) on `http://localhost:3001`
+- Backend (Express) on `http://localhost:3000`
 
 ### Option 2: Run Separately
 

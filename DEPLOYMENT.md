@@ -50,7 +50,7 @@ npm run dev:all
 
 This runs:
 - Frontend on `http://localhost:5001`
-- Backend on `http://localhost:3001`
+- Backend on `http://localhost:3000`
 
 No environment variables needed locally - the Vite proxy handles it.
 

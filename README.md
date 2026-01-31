@@ -17,7 +17,7 @@ Then open [http://localhost:5001](http://localhost:5001)
 
 This runs:
 - **Frontend** (Vite) on port 5001
-- **Backend** (Express API) on port 3001
+- **Backend** (Express API) on port 3000
 
 ## 📁 How It Works
 
