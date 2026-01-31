@@ -7,6 +7,7 @@ import { Baby, Heart, Sparkle, Trophy, Crown } from '@phosphor-icons/react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { toast } from 'sonner'
 import confetti from 'canvas-confetti'
+import { useAmplifyLeaderboard } from './hooks/useAmplifyLeaderboard'
 
 type Gender = 'boy' | 'girl'
 
@@ -20,31 +21,48 @@ const ACTUAL_GENDERS: Guess = {
   twin2: 'girl'
 }
 
+// Check if Amplify is configured
+const isAmplifyEnabled = !!import.meta.env.VITE_AMPLIFY_GRAPHQL_ENDPOINT
+
 function App() {
   const [playerName, setPlayerName] = useState('')
   const [twin1Guess, setTwin1Guess] = useState<Gender | null>(null)
   const [twin2Guess, setTwin2Guess] = useState<Gender | null>(null)
   const [gameState, setGameState] = useState<'input' | 'countdown' | 'reveal'>('input')
   const [countdown, setCountdown] = useState(5)
-  const [guesses, setGuesses] = useKV<Array<{ name: string; twin1: Gender; twin2: Gender; timestamp: number }>>('gender-guesses', [])
+  
+  // Use local storage for development, Amplify for production
+  const [localGuesses, setLocalGuesses] = useKV<Array<{ name: string; twin1: Gender; twin2: Gender; timestamp: number }>>('gender-guesses', [])
+  const { guesses: amplifyGuesses, addGuess: addAmplifyGuess, loading: amplifyLoading } = useAmplifyLeaderboard()
+  
+  const guesses = isAmplifyEnabled ? amplifyGuesses : (localGuesses || [])
 
   const canSubmit = playerName.trim() !== '' && twin1Guess !== null && twin2Guess !== null
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!canSubmit || !twin1Guess || !twin2Guess) return
 
-    setGuesses((current) => {
-      const currentArray = current || []
-      return [
-        ...currentArray,
-        {
-          name: playerName,
-          twin1: twin1Guess,
-          twin2: twin2Guess,
-          timestamp: Date.now()
-        }
-      ]
-    })
+    const newGuess = {
+      name: playerName,
+      twin1: twin1Guess,
+      twin2: twin2Guess,
+      timestamp: Date.now()
+    }
+
+    // Save to appropriate storage
+    if (isAmplifyEnabled) {
+      try {
+        await addAmplifyGuess(newGuess)
+      } catch (error) {
+        toast.error('Failed to submit guess. Please try again.')
+        return
+      }
+    } else {
+      setLocalGuesses((current) => {
+        const currentArray = current || []
+        return [...currentArray, newGuess]
+      })
+    }
 
     setGameState('countdown')
     setCountdown(5)
