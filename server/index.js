@@ -85,7 +85,26 @@ app.use(express.static(DIST_DIR));
 
 // Serve index.html for all other routes (SPA support)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(DIST_DIR, 'index.html'));
+  const indexPath = path.join(DIST_DIR, 'index.html');
+  console.log('Serving SPA route:', req.path);
+  console.log('Index path:', indexPath);
+  res.sendFile(indexPath, (err) => {
+    if (err) {
+      console.error('Error serving index.html:', err);
+  
+  // Check if dist directory exists
+  try {
+    await fs.access(DIST_DIR);
+    console.log('✅ Dist directory found:', DIST_DIR);
+    const files = await fs.readdir(DIST_DIR);
+    console.log('📁 Dist contents:', files);
+  } catch (error) {
+    console.error('❌ Dist directory not found! Run: npm run build');
+  }
+  
+      res.status(500).send('Frontend not built. Run: npm run build');
+    }
+  });
 });
 
 // Initialize and start server
