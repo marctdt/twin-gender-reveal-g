@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { toast } from 'sonner'
 import confetti from 'canvas-confetti'
 import { useAmplifyLeaderboard } from './hooks/useAmplifyLeaderboard'
+import { isConfigured as isAmplifyConfigured } from './amplifyConfig'
 
 type Gender = 'boy' | 'girl'
 
@@ -20,10 +21,6 @@ const ACTUAL_GENDERS: Guess = {
   twin1: 'girl',
   twin2: 'girl'
 }
-
-// Check if Amplify is configured
-const isAmplifyEnabled = !!import.meta.env.VITE_AMPLIFY_GRAPHQL_ENDPOINT
-
 function App() {
   const [playerName, setPlayerName] = useState('')
   const [twin1Guess, setTwin1Guess] = useState<Gender | null>(null)
@@ -35,7 +32,7 @@ function App() {
   const [localGuesses, setLocalGuesses] = useKV<Array<{ name: string; twin1: Gender; twin2: Gender; timestamp: number }>>('gender-guesses', [])
   const { guesses: amplifyGuesses, addGuess: addAmplifyGuess, loading: amplifyLoading } = useAmplifyLeaderboard()
   
-  const guesses = isAmplifyEnabled ? amplifyGuesses : (localGuesses || [])
+  const guesses = isAmplifyConfigured ? amplifyGuesses : (localGuesses || [])
 
   const canSubmit = playerName.trim() !== '' && twin1Guess !== null && twin2Guess !== null
 
@@ -50,7 +47,7 @@ function App() {
     }
 
     // Save to appropriate storage
-    if (isAmplifyEnabled) {
+    if (isAmplifyConfigured) {
       try {
         await addAmplifyGuess(newGuess)
       } catch (error) {

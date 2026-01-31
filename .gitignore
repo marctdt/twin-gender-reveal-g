@@ -28,6 +28,7 @@ dist-ssr
 .env.local
 .env.production
 .env.development
+amplify_outputs.json
 **/agent-eval-report*
 packages
 pids
