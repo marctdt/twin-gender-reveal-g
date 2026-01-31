@@ -9,12 +9,8 @@
         "dev:all": "concurrently \"npm run dev\" \"npm run dev:server\"",
         "kill": "fuser -k 5000/tcp",
         "build": "vite build",
-        "lint": "eslint .",
-        "optimize": "vite optimize",
         "preview": "vite preview",
-        "start": "node server/index.js",
-        "sandbox": "npx ampx sandbox",
-        "deploy": "npx ampx deploy"
+        "start": "node server/index.js"
     },
     "dependencies": {
         "@github/spark": ">=0.43.1 <1",
