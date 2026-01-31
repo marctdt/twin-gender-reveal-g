@@ -1,13 +1,15 @@
-version: 1backend:
+version: 1
+backend:
   phases:
     build:
       commands:
         - npm install
-        - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_IDfrontend:
+        - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
+frontend:
   phases:
     preBuild:
       commands:
-        - npm ci --cache .npm --prefer-offline
+        - npm install
     build:
       commands:
         - npm run build
