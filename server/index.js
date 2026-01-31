@@ -91,6 +91,14 @@ app.get('*', (req, res) => {
   res.sendFile(indexPath, (err) => {
     if (err) {
       console.error('Error serving index.html:', err);
+      res.status(500).send('Frontend not built. Run: npm run build');
+    }
+  });
+});
+
+// Initialize and start server
+async function start() {
+  await ensureDataDir();
   
   // Check if dist directory exists
   try {
@@ -102,14 +110,6 @@ app.get('*', (req, res) => {
     console.error('❌ Dist directory not found! Run: npm run build');
   }
   
-      res.status(500).send('Frontend not built. Run: npm run build');
-    }
-  });
-});
-
-// Initialize and start server
-async function start() {
-  await ensureDataDir();
   app.listen(PORT, () => {
     console.log(`🚀 Leaderboard API server running on http://localhost:${PORT}`);
   });
