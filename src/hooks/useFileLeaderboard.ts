@@ -17,9 +17,11 @@ export function useFileLeaderboard() {
   const [error, setError] = useState<string | null>(null)
 
   // Fetch all guesses
-  const fetchGuesses = async () => {
+  const fetchGuesses = async (isInitial = false) => {
     try {
-      setLoading(true)
+      if (isInitial) {
+        setLoading(true)
+      }
       const response = await fetch(API_URL)
       if (!response.ok) {
         throw new Error('Failed to fetch guesses')
@@ -31,7 +33,9 @@ export function useFileLeaderboard() {
       console.error('Error fetching guesses:', err)
       setError('Failed to load leaderboard')
     } finally {
-      setLoading(false)
+      if (isInitial) {
+        setLoading(false)
+      }
     }
   }
 
@@ -62,10 +66,10 @@ export function useFileLeaderboard() {
 
   // Initial fetch
   useEffect(() => {
-    fetchGuesses()
+    fetchGuesses(true)
     
     // Poll for updates every 5 seconds
-    const interval = setInterval(fetchGuesses, 5000)
+    const interval = setInterval(() => fetchGuesses(false), 5000)
     
     return () => clearInterval(interval)
   }, [])
@@ -75,6 +79,6 @@ export function useFileLeaderboard() {
     addGuess,
     loading,
     error,
-    refetch: fetchGuesses,
+    refetch: () => fetchGuesses(true),
   }
 }
